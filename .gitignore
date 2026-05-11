@@ -1,0 +1,13 @@
+# Laravel (Btask-back-end)
+Btask-back-end/vendor/
+Btask-back-end/.env
+Btask-back-end/storage/*.key
+Btask-back-end/public/storage
+Btask-back-end/bootstrap/cache/*
+
+# React / Node (task-list)
+task-list/node_modules/
+task-list/.env
+task-list/build/
+task-list/.DS_Store
+task-list/npm-debug.log*
