@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({setToken, setUser}) => {
+const Login = () => {
 
     const navigate = useNavigate();
 
@@ -24,9 +24,9 @@ const Login = ({setToken, setUser}) => {
             email : data.email ,
             password : data.password
         }).then(res => {
-            setToken(res.data.token),
-            setUser(res.data.user)
-            navigate('/taskList')
+            localStorage.setItem('token', res.data.token)
+            navigate('/ajouter')
+
 } 
 ).catch(err => console.log(err.response.data))
 

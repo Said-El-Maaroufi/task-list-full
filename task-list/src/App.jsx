@@ -6,6 +6,7 @@ import Login from "./auth/login";
 import Register from "./auth/register";
 import { useState } from "react";
 import Navbar from "./navbar";
+import Home from "./homePage";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -15,6 +16,7 @@ const App = () => {
       <BrowserRouter>
       <Navbar />
         <Routes>
+          <Route path="/homePage" element={<Home />} />
           <Route path="/ajouter" element={<TaskForm />} />
           <Route path="/task" element={<TaskItem />} />
           <Route
@@ -31,7 +33,7 @@ const App = () => {
           />
 
           {/* Optionnel : Une route pour gérer les erreurs 404 */}
-          <Route path="*" element={<TaskForm />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
   );

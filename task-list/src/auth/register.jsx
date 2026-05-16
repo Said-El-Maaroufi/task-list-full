@@ -38,7 +38,7 @@ const Register = ({setToken, setUser}) => {
     .then(res =>{
         setUser(res.data.user)
         setToken(res.data.token)
-        navigate('/taskList')
+        navigate('/ajouter')
     })
     .catch(err =>{
         if(err.response){

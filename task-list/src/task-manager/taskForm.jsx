@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from 'axios';
+import apiClient from "../auth/clientToken";
 
 
 const TaskForm = () => {
+    const [user, setUser] = useState(null)
 
     const [text, setText] = useState('');
 
@@ -13,9 +15,13 @@ const TaskForm = () => {
         })
     }
 
+    apiClient.get('/user')
+    .then(res => setUser(res.data))
+    .catch(err => console.error(err))
 
     return ( 
         <div className="container mt-5">
+            <h2 className="">Bonjour <span className="text-primary">{user ? user.name : 'invité'}</span></h2>
             <div className="row justify-content-center">
                 <div className="col-8">
                     <h2 className="text-center mb-4">Ajoutez une Tâche</h2>
