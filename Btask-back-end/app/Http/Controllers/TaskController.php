@@ -14,12 +14,11 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $tasks = Task::whereUserId($id);
 
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        return response()->json(['tasks' => $tasks]);
 
     }
 
@@ -81,10 +80,15 @@ class TaskController extends Controller
 
         $validate = $request->validate([
             'description' => 'required',
+            'user_id' => 'required|number|exists:user,id'
         ]);
 
         $task = Task::create($validate);
         return response()->json(['task' => $task], 201);
+    }
+
+    public function logout(){
+        
     }
 
     /**

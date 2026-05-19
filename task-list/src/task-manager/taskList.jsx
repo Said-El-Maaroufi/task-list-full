@@ -1,9 +1,8 @@
 import TaskItem from "./taskItem";
 
-const TaskList = ({user, token}) => {
-    console.log(token)
+const TaskList = ({tasks}) => {
     return ( <div className="row m-3">
-         <h1>hello {user ? user.name : 'invité'}</h1>
+         <TaskItem user={tasks}/>
     </div> );
 }
 

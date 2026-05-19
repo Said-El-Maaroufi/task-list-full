@@ -4,33 +4,41 @@ import TaskItem from "./task-manager/taskItem";
 import TaskList from "./task-manager/taskList";
 import Login from "./auth/login";
 import Register from "./auth/register";
-import { useState } from "react";
 import Navbar from "./navbar";
 import Home from "./homePage";
+import Logout from "./auth/logout";
+import { useState } from "react";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+
+  const [token, setToken] = useState(null)
+  
+  
 
   return (
       <BrowserRouter>
-      <Navbar />
+      <Navbar token={token} />
         <Routes>
           <Route path="/homePage" element={<Home />} />
-          <Route path="/ajouter" element={<TaskForm />} />
+          <Route path="/ajouter" element={<TaskForm token={token}  />} />
           <Route path="/task" element={<TaskItem />} />
           <Route
             path="/tasks"
-            element={<TaskList user={user} token={token} />}
+            element={<TaskList  />}
           />
           <Route
             path="/login"
-            element={<Login setUser={setUser} setToken={setToken} />}
+            element={<Login setToken={setToken} />}
           />
           <Route
             path="/register"
-            element={<Register setUser={setUser} setToken={setToken} />}
+            element={<Register setToken={setToken} />}
           />
+          <Route
+            path="/logout"
+            element={<Logout  token={token} />}
+          />
+         
 
           {/* Optionnel : Une route pour gérer les erreurs 404 */}
           <Route path="*" element={<Home />} />

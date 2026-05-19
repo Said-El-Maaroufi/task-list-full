@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({setToken} ) => {
 
     const navigate = useNavigate();
 
@@ -25,11 +25,11 @@ const Login = () => {
             password : data.password
         }).then(res => {
             localStorage.setItem('token', res.data.token)
+            setToken(localStorage.getItem('token'))
             navigate('/ajouter')
 
 } 
 ).catch(err => console.log(err.response.data))
-
     }
 
 

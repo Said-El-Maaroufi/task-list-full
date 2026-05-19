@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const Register = ({setToken, setUser}) => {
+const Register = ({setToken}) => {
 
     const navigate = useNavigate()
 
@@ -36,8 +36,8 @@ const Register = ({setToken, setUser}) => {
         }
     )
     .then(res =>{
-        setUser(res.data.user)
-        setToken(res.data.token)
+        localStorage.setItem('token', res.data.token)
+        setToken(localStorage.getItem('token'))
         navigate('/ajouter')
     })
     .catch(err =>{

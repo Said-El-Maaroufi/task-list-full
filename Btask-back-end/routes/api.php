@@ -9,9 +9,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+// Route::get('/ajouter')->middleware('auth:sanctum');
+
 Route::post('/store', [TaskController::class, 'store']);
+Route::post('/tasks/{id}', [TaskController::class, 'index']);
 Route::post('/register', [TaskController::class, 'register']);
 Route::post('/login', [TaskController::class, 'login']);
+Route::post('/logout', [TaskController::class, 'logout']);
 
 // Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
 // Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
