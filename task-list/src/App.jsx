@@ -12,6 +12,7 @@ import { useState } from "react";
 const App = () => {
 
   const [token, setToken] = useState(null)
+  const [tasks, setTasks] = useState(null)
   
   
 
@@ -20,11 +21,11 @@ const App = () => {
       <Navbar token={token} />
         <Routes>
           <Route path="/homePage" element={<Home />} />
-          <Route path="/ajouter" element={<TaskForm token={token}  />} />
+          <Route path="/ajouter" element={<TaskForm token={token} setToken={setToken} setTasks={setTasks} />} />
           <Route path="/task" element={<TaskItem />} />
           <Route
             path="/tasks"
-            element={<TaskList  />}
+            element={<TaskList  tasks={tasks} />}
           />
           <Route
             path="/login"

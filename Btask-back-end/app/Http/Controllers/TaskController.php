@@ -16,9 +16,8 @@ class TaskController extends Controller
      */
     public function index($id)
     {
-        $tasks = Task::whereUserId($id);
-
-        return response()->json(['tasks' => $tasks]);
+        $tasks = Task::all()->where('user_id' , '=', $id);
+        return response()->json($tasks, 201);
 
     }
 
@@ -80,11 +79,12 @@ class TaskController extends Controller
 
         $validate = $request->validate([
             'description' => 'required',
-            'user_id' => 'required|number|exists:user,id'
+            'user_id' => 'required|integer|exists:users,id'
         ]);
 
-        $task = Task::create($validate);
-        return response()->json(['task' => $task], 201);
+        Task::create($validate);
+        $tasks = Task::all();
+        return response()->json($tasks, 201);
     }
 
     public function logout(){
@@ -118,12 +118,12 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id )
-    {
-        //
-        Task::destroy($id);
-        return redirect()->route('tasks.index')->with('success', 'la tache a ete supprimer avec succées');
+    // public function destroy($id )
+    // {
+    //     //
+    //     Task::destroy($id);
+    //     return redirect()->route('tasks.index')->with('success', 'la tache a ete supprimer avec succées');
 
 
-    }
+    // }
 }
